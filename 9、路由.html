@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="stylesheet" href="">
+    <style type="text/css">
+        
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>Hello App!</h1>
+        <p>
+            <!-- 使用router-link组件来导航(默认会被渲染成一个a标签) 通过传入to属性制定链接 -->
+            <router-link to="/foo">Go to Foo</router-link>
+            <router-link to="/bar">Go to Bar</router-link>
+        </p>
+        <!-- 路由出口 路由匹配到的组件将渲染在这里 -->
+        <router-view></router-view>
+    </div>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/vue/2.1.3/vue.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script type="text/javascript">
+        const Foo = {template:'<div>foo</div>'}
+        const Bar = {template:'<div>bar</div>'}
+
+        const routes = [
+            {path:'/foo',component:Foo},
+            {path:'/bar',component:Bar}
+        ]
+
+        const router = new VueRouter({
+            routes
+        })
+
+        const app = new Vue({
+            router
+        }).$mount('#app')
+    </script>
+</body>
+</html>

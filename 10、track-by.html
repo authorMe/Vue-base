@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="stylesheet" href="">
+    <style type="text/css">
+        
+    </style>
+</head>
+<body>
+    <div id="example">
+        <!-- 无travk-by：数据修改时，无论值是否被修改，dom都重新渲染
+             有track-by：数据修改时，不变数据所在的dom不被重新渲染，已变的渲染 -->
+        <p v-for="site in sites" track-by="name">{{site.name}}</p>
+        <input type="button" value="修改" v-on:click="modify" />
+        <input type="button" value="还原" v-on:click="reduct" />
+    </div>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/vue/2.1.3/vue.js"></script>
+    <script type="text/javascript">
+        new Vue({
+            el:'#example',
+            data: {
+                sites:[
+                    {name:'aaaaa'},
+                    {name:'bbbbb'},
+                    {name:'ccccc'}
+                ]
+            },
+            methods:{
+                modify:function(){
+                    this.sites = [
+                        {name:'11111'},
+                        {name:'bbbbb'},
+                        {name:'ccccc'},
+                        {name:'ddddd'}
+                    ]
+                },
+                reduct:function(){
+                    this.sites = [
+                        {name:'aaaaa'},
+                        {name:'bbbbb'},
+                        {name:'ccccc'}
+                    ]
+                }
+            }
+        })
+    </script>
+</body>
+</html>

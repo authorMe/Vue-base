@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="stylesheet" href="">
+    <style type="text/css">
+        
+    </style>
+</head>
+<body>
+    <div id="app">
+        <p>{{ site }}</p>
+    </div>
+
+    <script type="text/javascript" src="https://cdn.bootcss.com/vue/2.4.2/vue.min.js"></script>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                name:'google',
+                url:'http://www.google.com'
+            },
+            // computed 属性默认只有getter，但是在需要时也可以提供一个setter
+            // 可以使用 methods 来替代 computed，效果上两个都是一样的，但是 computed 是基于它的依赖缓存，只有相关依赖发生改变时才会重新取值。而使用 methods ，在重新渲染的时候，函数总会重新调用执行。
+            // 使用 computed 性能会更好，但是如果你不希望缓存，你可以使用 methods 属性。
+            computed:{
+                site:{
+                    //getter
+                    get:function(){
+                        return this.name + ' ' + this.url
+                    },
+                    //setter
+                    set:function(newValue){
+                        var names = newValue.split(' ')
+                        this.name = names[0]
+                        this.url = names[names.length - 1]
+                    }
+                }
+            }
+        })
+        vm.site = '百度一下 http://www.baidu.com';
+        document.write('name:' + vm.name);
+        document.write('<br>');
+        document.write('url:' + vm.url);
+    </script>
+</body>
+</html>

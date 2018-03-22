@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="stylesheet" href="">
+    <style type="text/css">
+        .class1{background:#444;color:#eee;}
+        #list-1{color:red;}
+    </style>
+</head>
+<body>
+    <div id="app">
+        <p>{{ message }}</p>
+        <div v-html="message1"></div>
+
+        <label for="r1">修改颜色</label><input type="checkbox" v-model="class1" id="r1" />
+        <br />
+        <div v-bind:class="{'class1':class1}">directiva v-bind:class</div>
+        <br />
+        {{5+5}}<br>
+        {{ok ? 'yes' : 'no'}}<br>
+        {{ message2.split('').reverse().join('') }}
+        <div v-bind:id="'list-'+id">浙江省杭州市</div>
+        <br />
+        <p v-if="seen == 0">我是if判断</p>
+        <br />
+        <pre><a v-bind:href="url">百度一下</a></pre>
+        <br />
+        <p>{{ message3 }}</p>
+        <input v-model="message3" /> <!-- 双向数据绑定 -->
+        <br />
+        <p>{{ message4 }}</p>
+        <button v-on:click="reverseMessage">反转字符串</button>
+        <br />
+        <div>{{ message4 | capitalize }}</div>
+        <br />
+        <ol>
+            <li v-for="site in sites">{{site.name}}</li>
+            <li v-for="value in object">{{value}}</li>
+        </ol>
+        <br />
+        <ul>
+            <li v-for="(value,key) in object">{{key}} : {{value}}</li>
+            <li v-for="(value,key,index) in object">{{index}}.{{key}}:{{value}}</li>
+        </ul>
+    </div>
+
+    <script type="text/javascript" src="https://cdn.bootcss.com/vue/2.4.2/vue.min.js"></script>
+    <script type="text/javascript">
+        new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello Vue.js!',
+                message1: '<h1>的经适房开始的地方</h1>',
+                class1:false,
+                ok:true,
+                message2:'JINKETECH',
+                id:1,
+                seen:0,
+                url:'http://www.baidu.com',
+                message3:'helloWorld',
+                message4:'china!',
+                sites:[
+                    {name:'aaaaa'},
+                    {name:'bbbbb'},
+                    {name:'ccccc'}
+                ],
+                object:{
+                    name:'十月一日',
+                    url:'http://www.baidu.com',
+                    slogan:'放假放假放假'
+                }
+            },
+            methods: {
+                reverseMessage: function () {
+                  this.message4 = this.message4.split('').reverse().join('')
+                }
+            },
+            filters:{
+                capitalize:function(value){
+                    if(!value) return ''
+                    value = value.toString()
+                    return value.charAt(0).toUpperCase() + value.slice(1)
+                }
+            }
+        })
+    </script>
+</body>
+</html>

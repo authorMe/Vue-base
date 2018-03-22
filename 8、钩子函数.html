@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="stylesheet" href="">
+    <style type="text/css">
+        
+    </style>
+</head>
+<body>
+    <!-- <div id="app" v-my:hello.a.b="message"></div> -->
+
+    <div id="app" v-my="{color:'green',text:'哈哈哈哈'}"></div>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/vue/2.1.3/vue.js"></script>
+    <script type="text/javascript">
+        // 钩子函数
+        // Vue.directive('my',{
+        //     bind:function(el,binding,vnode){
+        //         var s = JSON.stringify
+        //         el.innerHTML = 
+        //         'name:'       + s(binding.name)       + '<br>' +
+        //         'value:'      + s(binding.value)      + '<br>' +
+        //         'expression:' + s(binding.expression) + '<br>' +
+        //         'argument:'   + s(binding.arg)        + '<br>' +
+        //         'modifiers:'  + s(binding.modifiers)  + '<br>' +
+        //         'vnode keys:' + Object.keys(vnode).join(', ')
+        //     }
+        // })
+        // new Vue({
+        //     el:'#app',
+        //     data:{
+        //         message:'钩子函数！'
+        //     }
+        // })
+        
+        // 简写函数
+        Vue.directive('my',function(el,binding){
+            // 简写方式设置文本及背景颜色
+            el.innerHTML = binding.value.text
+            el.style.backgroundColor = binding.value.color
+        })
+        new Vue({
+            el:'#app'
+        })
+    </script>
+</body>
+</html>
